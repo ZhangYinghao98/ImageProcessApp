@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">小爷P图</string>
+    <string name="choose_a_picture">选择图片来源</string>
+    <string name="title_activity_image_process">imageProcessActivity</string>
+    <string name="title_filter">滤镜</string>
+    <string name="title_adjust">调整</string>
+    <string name="save_picture">保存图片</string>
+    <string name="undo">撤销</string>
+    <string name="save">保存</string>
+    <string name="home_string">主页</string>
+    <string name="explore_string">探索</string>
+</resources>
