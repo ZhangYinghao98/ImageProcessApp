@@ -12,6 +12,11 @@
         android:title="@string/title_adjust" />
 
     <item
+        android:id="@+id/navigation_histogram"
+        android:icon="@drawable/ic_histogram_black_24dp"
+        android:title="@string/histogram_string"/>
+
+    <item
         android:id="@+id/navigation_explore"
         android:icon="@drawable/ic_explore_24dp"
         android:title="@string/explore_string"/>

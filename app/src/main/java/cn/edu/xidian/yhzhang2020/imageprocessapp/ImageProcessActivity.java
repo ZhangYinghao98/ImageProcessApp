@@ -29,6 +29,7 @@ import java.util.Objects;
 
 import cn.edu.xidian.yhzhang2020.imageprocessapp.ui.adjust.AdjustFragment;
 import cn.edu.xidian.yhzhang2020.imageprocessapp.ui.filter.FilterFragment;
+import cn.edu.xidian.yhzhang2020.imageprocessapp.ui.histogram.HistogramFragment;
 import cn.edu.xidian.yhzhang2020.imageprocessapp.ui.laboratory.LaboratoryFragment;
 
 /**
@@ -49,6 +50,7 @@ public class ImageProcessActivity extends AppCompatActivity {
     private Toolbar toolbar;
     FilterFragment filterFragment;
     AdjustFragment adjustFragment;
+    HistogramFragment histogramFragment;
     LaboratoryFragment laboratoryFragment;
     Fragment[] fragments;
     BottomNavigationView bottomNavigationView;
@@ -98,8 +100,9 @@ public class ImageProcessActivity extends AppCompatActivity {
 
         filterFragment = new FilterFragment();
         adjustFragment = new AdjustFragment();
+        histogramFragment = new HistogramFragment();
         laboratoryFragment = new LaboratoryFragment();
-        fragments = new Fragment[]{filterFragment,adjustFragment,laboratoryFragment};
+        fragments = new Fragment[]{filterFragment,adjustFragment,histogramFragment,laboratoryFragment};
         getSupportFragmentManager().beginTransaction().replace(R.id.fragments_container, fragments[0]).show(fragments[0]).commit();
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(changeFragment);
@@ -125,11 +128,18 @@ public class ImageProcessActivity extends AppCompatActivity {
                     }
                     break;
                 }
-                case R.id.navigation_explore: {
-                    Log.d(TAG, "onNavigationItemSelected: explore"+lastFragmentPosition);
+                case R.id.navigation_histogram: {
                     if (lastFragmentPosition != 2) {
                         switchFragment(lastFragmentPosition, 2);
                         lastFragmentPosition = 2;
+                    }
+                    break;
+                }
+                case R.id.navigation_explore: {
+                    Log.d(TAG, "onNavigationItemSelected: explore"+lastFragmentPosition);
+                    if (lastFragmentPosition != 3) {
+                        switchFragment(lastFragmentPosition, 3);
+                        lastFragmentPosition = 3;
                     }
                     break;
                 }

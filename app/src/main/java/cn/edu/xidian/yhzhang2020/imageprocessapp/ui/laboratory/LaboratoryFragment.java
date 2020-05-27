@@ -2,13 +2,9 @@ package cn.edu.xidian.yhzhang2020.imageprocessapp.ui.laboratory;
 
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -31,8 +27,6 @@ public class LaboratoryFragment extends Fragment {
     private EditText[] editTexts = new EditText[20];
     private float[] adjustMatrix = new float[20];
     private GridLayout gridLayout;
-    private int editTextWidth = 60;
-    private int editTextHeight = 30;
 
     String TAG = "LABORATORY_FRAGMENT";
 
@@ -73,8 +67,6 @@ public class LaboratoryFragment extends Fragment {
             }
         });
         gridLayout = root.findViewById(R.id.grid_layout);
-//        editTextWidth = gridLayout.getWidth() / 4;
-//        editTextHeight = gridLayout.getHeight() / 5;
         addEditTexts();
         initEditTexts();
         return root;

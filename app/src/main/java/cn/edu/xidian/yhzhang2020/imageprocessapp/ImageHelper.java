@@ -174,7 +174,7 @@ public class ImageHelper {
 
         int offsetX = 0, offsetY = 0;
         int newX = 0, newY = 0;
-        int size = 8;
+        int size = 16;
 //        int size = width > 400 ? (int) ((double) width * 0.01) : 4;
         double total = size * size;
         double sumred = 0, sumgreen = 0, sumblue = 0;
@@ -227,7 +227,7 @@ public class ImageHelper {
         Random rand = new Random();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                int level = rand.nextInt(15);
+                int level = rand.nextInt(10);
                 switch (level) {
                     case 0:
                         originalColor = result.getPixel(x, y);
@@ -256,14 +256,6 @@ public class ImageHelper {
                         b = Color.blue(originalColor);
                         gray = (int) (r * 0.3 + g * 0.59 + b * 0.11);
                         result.setPixel(x, y, Color.rgb(r - gray, g - gray, b - gray));
-                        break;
-                    case 3:
-                        originalColor = result.getPixel(x, y);
-                        r = Color.red(originalColor);
-                        g = Color.green(originalColor);
-                        b = Color.blue(originalColor);
-                        gray = (int) (r * 0.3 + g * 0.59 + b * 0.11);
-                        result.setPixel(x, y, Color.rgb(r + gray, g + gray, b));
                         break;
                     default:
                         break;
@@ -638,6 +630,39 @@ public class ImageHelper {
         for (int i = 0; i < resultWidth; i++) {
             for (int j = resultHeight - 1; j >= resultHeight - grayCounts[i]; j--) {
                 result.setPixel(i, j, Color.WHITE);
+            }
+        }
+        return result;
+    }
+
+    public static Bitmap adjustLightnessByTwoValue(Bitmap bitmap, int min, int max) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Bitmap result = bitmap.copy(Bitmap.Config.RGB_565, true);
+        int value = 40;//调整的数值
+        int originalColor = 0;
+        int r = 0;
+        int g = 0;
+        int b = 0;
+        int gray = 0;
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                originalColor = result.getPixel(x, y);
+                r = Color.red(originalColor);
+                g = Color.green(originalColor);
+                b = Color.blue(originalColor);
+                gray = (int) (r * 0.3 + g * 0.59 + b * 0.11);
+                if (gray <= min) {
+                    r = Math.max(r - value, 0);
+                    g = Math.max(g - value, 0);
+                    b = Math.max(b - value,0);
+                    result.setPixel(x, y, Color.rgb(r, g, b));
+                } else if(gray >= max){
+                    r = Math.min(r + value, 255);
+                    g = Math.min(g + value, 255);
+                    b = Math.min(b + value,255);
+                    result.setPixel(x, y, Color.rgb(r, g, b));
+                }
             }
         }
         return result;
